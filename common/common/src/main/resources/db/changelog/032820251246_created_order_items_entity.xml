@@ -1,0 +1,39 @@
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                   http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.3.xsd">
+
+    <changeSet id="6" author="Santhosh">
+        <createTable tableName="order_items">
+            <column name="id" type="UUID" >
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="order_id" type="varchar(100)">
+                <constraints nullable="false" foreignKeyName="fk_order_items_orders" referencedTableName="order" referencedColumnNames="id"/>
+            </column>
+            <column name="product_id" type="varchar(100)">
+                <constraints nullable="false" foreignKeyName="fk_order_items_products" referencedTableName="products" referencedColumnNames="id"/>
+            </column>
+            <column name="employee_id" type="varchar(100)">
+                <constraints nullable="false" foreignKeyName="fk_employee_order_id" referencedTableName="employee" referencedColumnNames="id"/>
+            </column>
+            <column name="quantity" type="varchar(100)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="special_instruction" type="TEXT"/>
+            <column name="status" type="VARCHAR(20)" defaultValue="ORDERED">
+                <constraints nullable="false"/>
+            </column>
+            <column name="shared_with_table" type="varchar(100)" defaultValueComputed="NULL"/>
+            <column name="created_by" type="varchar(100)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="created_at" type="timestamp" defaultValueComputed="CURRENT_TIMESTAMP"/>
+            <column name="updated_by" type="varchar(100)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="updated_at" type="timestamp" defaultValueComputed="CURRENT_TIMESTAMP"/>
+        </createTable>
+    </changeSet>
+
+</databaseChangeLog>

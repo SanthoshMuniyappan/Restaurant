@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+        http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.8.xsd">
+
+    <changeSet id="5" author="Santhosh">
+        <createTable tableName="order">
+            <column name="id" type="UUID">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="name" type="varchar(50)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="customer_id" type="varchar(50)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="status" type="varchar(100)" defaultValue="PENDING">
+                <constraints nullable="false"/>
+            </column>
+            <column name="employee_id" type="varchar(100)">
+                <constraints nullable="false" foreignKeyName="fk_employee_order" referencedTableName="employee" referencedColumnNames="id"/>
+            </column>
+            <column name="created_by" type="varchar(100)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="created_at" type="timestamp" defaultValueComputed="CURRENT_TIMESTAMP"/>
+            <column name="updated_by" type="varchar(100)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="updated_at" type="timestamp" defaultValueComputed="CURRENT_TIMESTAMP"/>
+        </createTable>
+        <addForeignKeyConstraint baseTableName="order"
+                                 baseColumnNames="customer_id"
+                                 referencedTableName="customer"
+                                 referencedColumnNames="id"
+                                 constraintName="fk_customer_order"/>
+    </changeSet>
+
+</databaseChangeLog>

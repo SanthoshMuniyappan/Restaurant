@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+        http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.8.xsd">
+
+    <changeSet id="4" author="Santhosh">
+        <createTable tableName="customer">
+            <column name="id" type="UUID">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="name" type="varchar(50)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="email" type="varchar(50)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="password" type="varchar(20)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="restaurant_id" type="varchar(100)">
+                <constraints nullable="false" foreignKeyName="fk_customer_restaurant_id" referencedTableName="restaurant" referencedColumnNames="id"/>
+            </column>
+            <column name="subscriptions_id" type="varchar(100)">
+                <constraints nullable="false" foreignKeyName="fk_customer_subscriptions_id" referencedTableName="subscriptions" referencedColumnNames="id"/>
+            </column>
+            <column name="created_by" type="varchar(100)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="created_at" type="timestamp" defaultValueComputed="CURRENT_TIMESTAMP"/>
+            <column name="updated_by" type="varchar(100)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="updated_at" type="timestamp" defaultValueComputed="CURRENT_TIMESTAMP"/>
+        </createTable>
+    </changeSet>
+
+</databaseChangeLog>
