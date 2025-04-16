@@ -2,8 +2,6 @@ package ors.common.model;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
-import jakarta.persistence.EnumType;
-import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -14,24 +12,23 @@ import org.hibernate.annotations.UpdateTimestamp;
 import java.time.Instant;
 
 @Entity
-public class Order {
+public class Subscription {
 
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
     private String id;
 
     @Column(nullable = false)
-    private String name;
+    private String tableName;
 
-    @Enumerated(EnumType.STRING)
     @Column(nullable = false)
-    private OrderStatus status;
+    private String qrCodeUrl;
 
     @ManyToOne
-    private Customer customer;
+    private SubscriptionPlan subscriptionPlan;
 
     @ManyToOne
-    private Employee employee;
+    private Restaurant restaurant;
 
     @Column(nullable = false)
     private String createdBy;
@@ -53,36 +50,36 @@ public class Order {
         this.id = id;
     }
 
-    public String getName() {
-        return name;
+    public String getTableName() {
+        return tableName;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setTableName(String tableName) {
+        this.tableName = tableName;
     }
 
-    public OrderStatus getStatus() {
-        return status;
+    public String getQrCodeUrl() {
+        return qrCodeUrl;
     }
 
-    public void setStatus(OrderStatus status) {
-        this.status = status;
+    public void setQrCodeUrl(String qrCodeUrl) {
+        this.qrCodeUrl = qrCodeUrl;
     }
 
-    public Customer getCustomer() {
-        return customer;
+    public SubscriptionPlan getSubscriptionPlan() {
+        return subscriptionPlan;
     }
 
-    public void setCustomer(Customer customer) {
-        this.customer = customer;
+    public void setSubscriptionPlan(SubscriptionPlan subscriptionPlan) {
+        this.subscriptionPlan = subscriptionPlan;
     }
 
-    public Employee getEmployee() {
-        return employee;
+    public Restaurant getRestaurant() {
+        return restaurant;
     }
 
-    public void setEmployee(Employee employee) {
-        this.employee = employee;
+    public void setRestaurant(Restaurant restaurant) {
+        this.restaurant = restaurant;
     }
 
     public String getCreatedBy() {
@@ -101,19 +98,19 @@ public class Order {
         this.createdAt = createdAt;
     }
 
-    public Instant getUpdatedAt() {
-        return updatedAt;
-    }
-
-    public void setUpdatedAt(Instant updatedAt) {
-        this.updatedAt = updatedAt;
-    }
-
     public String getUpdatedBy() {
         return updatedBy;
     }
 
     public void setUpdatedBy(String updatedBy) {
         this.updatedBy = updatedBy;
+    }
+
+    public Instant getUpdatedAt() {
+        return updatedAt;
+    }
+
+    public void setUpdatedAt(Instant updatedAt) {
+        this.updatedAt = updatedAt;
     }
 }

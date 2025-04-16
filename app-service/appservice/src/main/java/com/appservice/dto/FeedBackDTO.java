@@ -5,7 +5,8 @@ public class FeedBackDTO {
     private String customerId;
     private String orderId;
     private String comment;
-    private String rating;
+    private String restaurantRating;
+    private String applicationRating;
     private String createdBy;
     private String updatedBy;
 
@@ -33,12 +34,20 @@ public class FeedBackDTO {
         this.comment = comment;
     }
 
-    public String getRating() {
-        return rating;
+    public String getApplicationRating() {
+        return applicationRating;
     }
 
-    public void setRating(String rating) {
-        this.rating = rating;
+    public void setApplicationRating(String applicationRating) {
+        this.applicationRating = applicationRating;
+    }
+
+    public String getRestaurantRating() {
+        return restaurantRating;
+    }
+
+    public void setRestaurantRating(String restaurantRating) {
+        this.restaurantRating = restaurantRating;
     }
 
     public String getCreatedBy() {

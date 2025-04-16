@@ -1,6 +1,6 @@
 package com.appservice.dto;
 
-public class OrderDTO {
+public class OrdersDTO {
 
     private String name;
     private String customerId;

@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import ors.common.model.Employee;
 
 @RestController
 @RequestMapping("/employee")
@@ -31,6 +32,11 @@ public class EmployeeController {
     @PutMapping("/update/{id}")
     public ResponseDTO update(@PathVariable final String id, @RequestBody EmployeeDTO employeeDTO) {
         return this.employeeService.update(id, employeeDTO);
+    }
+
+    @GetMapping("/name/{name}")
+    public Employee retrieveEmployee(@PathVariable("name") final String name) {
+        return this.employeeService.retrieveEmployee(name);
     }
 
     @GetMapping("/retrieve/{id}")

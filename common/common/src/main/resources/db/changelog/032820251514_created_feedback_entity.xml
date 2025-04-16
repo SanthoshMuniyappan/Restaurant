@@ -3,7 +3,7 @@
                    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
                    http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.3.xsd">
 
-    <changeSet id="10" author="Santhosh">
+    <changeSet id="9" author="Santhosh">
         <createTable tableName="feedback">
             <column name="id" type="UUID" >
                 <constraints primaryKey="true" nullable="false"/>
@@ -11,20 +11,19 @@
             <column name="costumer_id" type="VARCHAR(20)">
                 <constraints nullable="false" foreignKeyName="fk_feedback_users" referencedTableName="customer" referencedColumnNames="id"/>
             </column>
-            <column name="order_id" type="VARCHAR(20)">
-                <constraints nullable="false" foreignKeyName="fk_feedback_orders" referencedTableName="order" referencedColumnNames="id"/>
+            <column name="restaurant_id" type="VARCHAR(20)">
+                <constraints nullable="false" foreignKeyName="fk_feedback_restaurant" referencedTableName="restaurant" referencedColumnNames="id"/>
             </column>
-            <column name="rating" type="VARCHAR(20)">
+            <column name="restaurant_rating" type="float">
+                <constraints nullable="true"/>
+            </column>
+            <column name="application_rating" type="float">
                 <constraints nullable="true"/>
             </column>
             <column name="comment" type="TEXT"/>
-            <column name="created_by" type="varchar(100)">
-                <constraints nullable="false"/>
-            </column>
+            <column name="created_by" type="varchar(100)" defaultValue="NA"/>
             <column name="created_at" type="timestamp" defaultValueComputed="CURRENT_TIMESTAMP"/>
-            <column name="updated_by" type="varchar(100)">
-                <constraints nullable="false"/>
-            </column>
+            <column name="updated_by" type="varchar(100)" defaultValue="NA"/>
             <column name="updated_at" type="timestamp" defaultValueComputed="CURRENT_TIMESTAMP"/>
         </createTable>
     </changeSet>

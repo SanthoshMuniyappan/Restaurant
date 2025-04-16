@@ -47,13 +47,18 @@ public class OrderItemsController {
         return this.orderItemsService.remove(id);
     }
 
-    @PutMapping("/kot-status/{id}")
-    public ResponseDTO UpdateKotStatus(@PathVariable("id") final String id){
-        return this.orderItemsService.UpdateKotStatus(id);
+    @PutMapping("/kot/ready-status/{id}")
+    public ResponseDTO UpdateKotReadyStatus(@PathVariable("id") final String id){
+        return this.orderItemsService.UpdateKotReadyStatus(id);
     }
 
-    @PutMapping("/server-status/{id}")
+    @PutMapping("/server/delivered-status/{id}")
     public ResponseDTO UpdateServerStatus(@PathVariable("id") final String id,@RequestBody final OrderItemsDTO orderItemsDTO){
-        return this.orderItemsService.UpdateServerStatus(id,orderItemsDTO);
+        return this.orderItemsService.UpdateServerDeliveredStatus(id,orderItemsDTO);
+    }
+
+    @PutMapping("/kot/prepare-status/{id}")
+    public ResponseDTO UpdateKotPreparingStatus(@PathVariable("id") final String id){
+        return this.orderItemsService.UpdateKotPreparingStatus(id);
     }
 }

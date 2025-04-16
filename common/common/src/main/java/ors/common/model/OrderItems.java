@@ -7,6 +7,7 @@ import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
@@ -21,26 +22,27 @@ public class OrderItems {
     private String id;
 
     @Column(nullable = false)
-    private String quantity;
+    private int quantity;
 
     @ManyToOne
-    private Order order;
+    @JoinColumn(name = "order_id")
+    private Orders orders;
 
     @ManyToOne
+    @JoinColumn(name = "product_id")
     private Products products;
-
-    @ManyToOne
-    private Employee employee;
 
     @Column(nullable = false)
     private String specialInstruction;
 
-    @Enumerated(EnumType.STRING)
     @Column(nullable = false)
-    private OrderItemStatus status;
+    private String status;
 
     @Column(nullable = false)
     private String sharedWithTable;
+
+    @Column(nullable = false)
+    private int totalPrice;
 
     @Column(nullable = false)
     private String createdBy;
@@ -62,28 +64,20 @@ public class OrderItems {
         this.id = id;
     }
 
-    public String getQuantity() {
+    public int getQuantity() {
         return quantity;
     }
 
-    public void setQuantity(String quantity) {
+    public void setQuantity(int quantity) {
         this.quantity = quantity;
     }
 
-    public Employee getEmployee() {
-        return employee;
+    public Orders getOrder() {
+        return orders;
     }
 
-    public void setEmployee(Employee employee) {
-        this.employee = employee;
-    }
-
-    public Order getOrder() {
-        return order;
-    }
-
-    public void setOrder(Order order) {
-        this.order = order;
+    public void setOrder(Orders orders) {
+        this.orders = orders;
     }
 
     public Products getProducts() {
@@ -110,12 +104,28 @@ public class OrderItems {
         this.sharedWithTable = sharedWithTable;
     }
 
-    public OrderItemStatus getStatus() {
+    public Orders getOrders() {
+        return orders;
+    }
+
+    public void setOrders(Orders orders) {
+        this.orders = orders;
+    }
+
+    public String getStatus() {
         return status;
     }
 
-    public void setStatus(OrderItemStatus status) {
+    public void setStatus(String status) {
         this.status = status;
+    }
+
+    public int getTotalPrice() {
+        return totalPrice;
+    }
+
+    public void setTotalPrice(int totalPrice) {
+        this.totalPrice = totalPrice;
     }
 
     public String getCreatedBy() {

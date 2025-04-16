@@ -1,6 +1,6 @@
 package com.appservice.dto;
 
-public class SubscriptionsDTO {
+public class SubscriptionDTO {
 
     private String tableName;
     private String subscriptionPlanId;

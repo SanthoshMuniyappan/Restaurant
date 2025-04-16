@@ -6,6 +6,7 @@ public class Constants {
 
     }
 
+    public static final String TOKEN = "Token is created";
     public static final String CREATED = "Successfully created";
     public static final String UPDATED = "Updated Successfully";
     public static final String RETRIEVED = "Successfully Retrieved";
@@ -28,4 +29,12 @@ public class Constants {
     public static final String CATEGORY_ID_NOT_FOUND="Category id not found";
     public static final String SUB_CATEGORY_ID_NOT_FOUND="Sub Category id not found";
     public static final String MEAL_TIME_ID_NOT_FOUND="MealTime id not found";
+    public static final String ERROR_GENERATE="Error generating QR Code";
+    public static final String IMAGE_ID_NOT_FOUND="Image id not found";
+    public static final String CREDENTIALS_MISMATCH="Credential mismatch";
+    public static final String EMPLOYEE_NOT_FOUND="Employee not found";
+    public static final String ORDER_NOT_APPROVED="Order not approved";
+    public static final String ERROR_ID_NOT_FOUND="Error Id not found";
+    public static final String DEFAULT_USER_ID ="NA";
+    public static final String PAYMENT_ID_NOT_FOUND="Payment id not found";
 }

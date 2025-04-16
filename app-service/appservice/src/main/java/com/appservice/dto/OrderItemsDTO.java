@@ -4,30 +4,21 @@ import ors.common.model.OrderItemStatus;
 
 public class OrderItemsDTO {
 
-    private String Id;
-    private String quantity;
+    private int quantity;
     private String orderId;
     private String productsId;
-    private String employeeId;
     private String specialInstruction;
     private OrderItemStatus status;
     private String sharedWithTable;
     private String createdBy;
     private String updatedBy;
 
-    public String getId() {
-        return Id;
-    }
 
-    public void setId(String id) {
-        Id = id;
-    }
-
-    public String getQuantity() {
+    public int getQuantity() {
         return quantity;
     }
 
-    public void setQuantity(String quantity) {
+    public void setQuantity(int quantity) {
         this.quantity = quantity;
     }
 
@@ -45,14 +36,6 @@ public class OrderItemsDTO {
 
     public void setProductsId(String productsId) {
         this.productsId = productsId;
-    }
-
-    public String getEmployeeId() {
-        return employeeId;
-    }
-
-    public void setEmployeeId(String employeeId) {
-        this.employeeId = employeeId;
     }
 
     public String getSpecialInstruction() {

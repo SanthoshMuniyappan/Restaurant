@@ -7,6 +7,7 @@ import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
@@ -23,27 +24,27 @@ public class Products {
     @Column(nullable = false)
     private String name;
 
-
     @ManyToOne
     private Cuisine cuisine;
-
 
     @ManyToOne
     private MealTime mealTime;
 
     @ManyToOne
+    @JoinColumn(name = "veg_or_non-veg_id")
     private VegOrNonVeg vegOrNonVeg;
-
 
     @ManyToOne
     private Category category;
 
+    @ManyToOne
+    private Image image;
 
     @ManyToOne
     private SubCategory subCategory;
 
     @Column(nullable = false)
-    private String price;
+    private int price;
 
     @ManyToOne
     private Restaurant restaurant;
@@ -82,6 +83,14 @@ public class Products {
 
     public void setCuisine(Cuisine cuisine) {
         this.cuisine = cuisine;
+    }
+
+    public Image getImage() {
+        return image;
+    }
+
+    public void setImage(Image image) {
+        this.image = image;
     }
 
     public MealTime getMealTime() {
@@ -124,11 +133,11 @@ public class Products {
         this.subCategory = subCategory;
     }
 
-    public String getPrice() {
+    public int getPrice() {
         return price;
     }
 
-    public void setPrice(String price) {
+    public void setPrice(int price) {
         this.price = price;
     }
 

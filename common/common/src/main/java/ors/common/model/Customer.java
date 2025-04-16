@@ -25,8 +25,6 @@ public class Customer {
     private String password;
     @ManyToOne
     private Restaurant restaurant;
-    @ManyToOne
-    private Subscriptions subscriptions;
     @Column(nullable = false)
     private String createdBy;
     @CreationTimestamp
@@ -82,14 +80,6 @@ public class Customer {
 
     public void setRestaurant(Restaurant restaurant) {
         this.restaurant = restaurant;
-    }
-
-    public Subscriptions getRestaurantTables() {
-        return subscriptions;
-    }
-
-    public void setRestaurantTables(Subscriptions subscriptions) {
-        this.subscriptions = subscriptions;
     }
 
     public String getCreatedBy() {

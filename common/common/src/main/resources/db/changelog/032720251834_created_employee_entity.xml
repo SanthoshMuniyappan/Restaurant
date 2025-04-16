@@ -5,35 +5,30 @@
         xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
         http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.8.xsd">
 
-    <changeSet id="3" author="Santhosh">
+    <changeSet id="4" author="Santhosh">
         <createTable tableName="employee">
             <column name="id" type="UUID">
                 <constraints primaryKey="true" nullable="false"/>
             </column>
-            <column name="name" type="varchar(50)">
+            <column name="name" type="varchar(100)">
                 <constraints nullable="false"/>
             </column>
-            <column name="email" type="varchar(50)">
+            <column name="email" type="varchar(100)">
                 <constraints nullable="false"/>
             </column>
-            <column name="password" type="varchar(20)">
+            <column name="password" type="varchar(100)">
                 <constraints nullable="false"/>
             </column>
             <column name="role" type="varchar(100)">
                 <constraints nullable="false"/>
             </column>
-            <column name="restaurantId" type="varchar(100)">
+            <column name="restaurant_id" type="varchar(100)">
                 <constraints nullable="false" foreignKeyName="fk_employee_restaurant_id" referencedTableName="restaurant" referencedColumnNames="id"/>
             </column>
-            <column name="created_by" type="varchar(100)">
-                <constraints nullable="false"/>
-            </column>
+            <column name="created_by" type="varchar(100)" defaultValue="NA"/>
             <column name="created_at" type="timestamp" defaultValueComputed="CURRENT_TIMESTAMP"/>
-            <column name="updated_by" type="varchar(100)">
-                <constraints nullable="false"/>
-            </column>
+            <column name="updated_by" type="varchar(100)" defaultValue="NA"/>
             <column name="updated_at" type="timestamp" defaultValueComputed="CURRENT_TIMESTAMP"/>
         </createTable>
     </changeSet>
-
 </databaseChangeLog>

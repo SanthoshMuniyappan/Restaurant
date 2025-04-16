@@ -5,8 +5,8 @@
         xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
         http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.8.xsd">
 
-    <changeSet id="11" author="Santhosh">
-        <createTable tableName="subscriptions">
+    <changeSet id="10" author="Santhosh">
+        <createTable tableName="subscription">
             <column name="id" type="UUID">
                 <constraints primaryKey="true" nullable="false"/>
             </column>
@@ -22,14 +22,9 @@
             <column name="subscription_plan_id" type="varchar(100)">
                 <constraints nullable="false" foreignKeyName="fk_subscriptions_plan_id" referencedTableName="subscription_plan" referencedColumnNames="id"/>
             </column>
-            <column name="created_by" type="varchar(100)">
-                <constraints nullable="false"/>
-            </column>
+            <column name="created_by" type="varchar(100)" defaultValue="NA"/>
             <column name="created_at" type="timestamp" defaultValueComputed="CURRENT_TIMESTAMP"/>
-            <column name="updated_by" type="varchar(100)">
-                <constraints nullable="false"/>
-            </column>
-
+            <column name="updated_by" type="varchar(100)" defaultValue="NA"/>
             <column name="updated_at" type="timestamp" defaultValueComputed="CURRENT_TIMESTAMP"/>
         </createTable>
     </changeSet>

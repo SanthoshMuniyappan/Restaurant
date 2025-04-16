@@ -1,8 +1,8 @@
 package ors.common.model;
 
 public enum Role {
-
-    ADMIN,
-    KOT,
-    SERVER
+    ROLE_SUPER_ADMIN,
+    ROLE_ADMIN,
+    ROLE_KOT,
+    ROLE_SERVER
 }

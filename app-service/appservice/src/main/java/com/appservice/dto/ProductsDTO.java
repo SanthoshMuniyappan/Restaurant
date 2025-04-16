@@ -8,7 +8,8 @@ public class ProductsDTO {
     private String vegOrNonVegId;
     private String categoryId;
     private String subCategoryId;
-    private String price;
+    private String imageId;
+    private int price;
     private String restaurantId;
     private String createdBy;
     private String updatedBy;
@@ -27,6 +28,14 @@ public class ProductsDTO {
 
     public void setCuisineId(String cuisineId) {
         this.cuisineId = cuisineId;
+    }
+
+    public String getImageId() {
+        return imageId;
+    }
+
+    public void setImageId(String imageId) {
+        this.imageId = imageId;
     }
 
     public String getMealTimeId() {
@@ -61,11 +70,11 @@ public class ProductsDTO {
         this.subCategoryId = subCategoryId;
     }
 
-    public String getPrice() {
+    public int getPrice() {
         return price;
     }
 
-    public void setPrice(String price) {
+    public void setPrice(int price) {
         this.price = price;
     }
 

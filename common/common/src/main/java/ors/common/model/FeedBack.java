@@ -6,7 +6,6 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.ManyToOne;
-import jakarta.persistence.OneToOne;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
@@ -14,23 +13,35 @@ import java.time.Instant;
 
 @Entity
 public class FeedBack {
+
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
     private String id;
+
     @ManyToOne
     private Customer customer;
-    @OneToOne
-    private Order order;
+
+    @ManyToOne
+    private Restaurant restaurant;
+
     @Column(nullable = false)
-    private String rating;
+    private String restaurantRating;
+
+    @Column(nullable = false)
+    private String applicationRating;
+
     @Column(nullable = false)
     private String comment;
+
     @Column(nullable = false)
     private String createdBy;
+
     @CreationTimestamp
     private Instant createdAt;
+
     @Column(nullable = false)
     private String updatedBy;
+
     @UpdateTimestamp
     private Instant updatedAt;
 
@@ -50,20 +61,28 @@ public class FeedBack {
         this.customer = customer;
     }
 
-    public Order getOrder() {
-        return order;
+    public Restaurant getRestaurant() {
+        return restaurant;
     }
 
-    public void setOrder(Order order) {
-        this.order = order;
+    public void setRestaurant(Restaurant restaurant) {
+        this.restaurant = restaurant;
     }
 
-    public String getRating() {
-        return rating;
+    public String getApplicationRating() {
+        return applicationRating;
     }
 
-    public void setRating(String rating) {
-        this.rating = rating;
+    public void setApplicationRating(String applicationRating) {
+        this.applicationRating = applicationRating;
+    }
+
+    public String getRestaurantRating() {
+        return restaurantRating;
+    }
+
+    public void setRestaurantRating(String restaurantRating) {
+        this.restaurantRating = restaurantRating;
     }
 
     public String getComment() {

@@ -7,12 +7,21 @@
 
     <include file="db/changelog/032620251832_created_restaurant_entity.xml"/>
     <include file="db/changelog/040720251059_created_subscription_plan_entity.xml"/>
-    <include file="db/changelog/040120251818_subscriptions_entity.xml"/>
+    <include file="db/changelog/040120251818_subscription_entity.xml"/>
     <include file="db/changelog/032720251619_created_products_entity.xml"/>
     <include file="db/changelog/032720251834_created_employee_entity.xml"/>
     <include file="db/changelog/032720251858_created_customer_entity.xml"/>
-    <include file="db/changelog/032820251217_created_order_entity.xml"/>
+    <include file="db/changelog/032820251217_created_orders_entity.xml"/>
     <include file="db/changelog/032820251246_created_order_items_entity.xml"/>
     <include file="db/changelog/032820251510_created_payment_entity.xml"/>
     <include file="db/changelog/032820251514_created_feedback_entity.xml"/>
+    <include file="db/changelog/080420251529_created_image_entity.xml"/>
+    <include file="db/changelog/070420251846_created_cuisine_entity.xml"/>
+    <include file="db/changelog/070420251850_created_meal_time_entity.xml"/>
+    <include file="db/changelog/070420251857_created_category_entity.xml"/>
+    <include file="db/changelog/070420251857_created_sub_category_entity.xml"/>
+    <include file="db/changelog/07020251855_created_veg_or_non_veg_entity.xml"/>
+    <include file="db/changelog/041020251258_created_video_entity.xml"/>
+    <include file="db/changelog/041120251116_created_error_table_entity.xml"/>
+
 </databaseChangeLog>
