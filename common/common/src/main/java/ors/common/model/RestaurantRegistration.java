@@ -11,7 +11,7 @@ import org.hibernate.annotations.UpdateTimestamp;
 import java.time.Instant;
 
 @Entity
-public class Restaurant {
+public class RestaurantRegistration {
 
     @Id
     @GeneratedValue(strategy = GenerationType.UUID)
@@ -21,25 +21,13 @@ public class Restaurant {
     private String name;
 
     @Column(nullable = false)
-    private double ratings;
+    private String password;
 
     @Column(nullable = false)
-    private double appRating;
-
-    @Column(nullable = false)
-    private String location;
-
-    @Column(nullable = false)
-    private String startRate;
-
-    @Column(nullable = false)
-    private String createdBy;
+    private String email;
 
     @CreationTimestamp
     private Instant createdAt;
-
-    @Column(nullable = false)
-    private String updatedBy;
 
     @UpdateTimestamp
     private Instant updatedAt;
@@ -60,44 +48,20 @@ public class Restaurant {
         this.name = name;
     }
 
-    public double getRatings() {
-        return ratings;
+    public String getPassword() {
+        return password;
     }
 
-    public void setRatings(double ratings) {
-        this.ratings = ratings;
+    public void setPassword(String password) {
+        this.password = password;
     }
 
-    public double getAppRating() {
-        return appRating;
+    public String getEmail() {
+        return email;
     }
 
-    public void setAppRating(double appRating) {
-        this.appRating = appRating;
-    }
-
-    public String getLocation() {
-        return location;
-    }
-
-    public void setLocation(String location) {
-        this.location = location;
-    }
-
-    public String getStartRate() {
-        return startRate;
-    }
-
-    public void setStartRate(String startRate) {
-        this.startRate = startRate;
-    }
-
-    public String getCreatedBy() {
-        return createdBy;
-    }
-
-    public void setCreatedBy(String createdBy) {
-        this.createdBy = createdBy;
+    public void setEmail(String email) {
+        this.email = email;
     }
 
     public Instant getCreatedAt() {
@@ -106,14 +70,6 @@ public class Restaurant {
 
     public void setCreatedAt(Instant createdAt) {
         this.createdAt = createdAt;
-    }
-
-    public String getUpdatedBy() {
-        return updatedBy;
-    }
-
-    public void setUpdatedBy(String updatedBy) {
-        this.updatedBy = updatedBy;
     }
 
     public Instant getUpdatedAt() {

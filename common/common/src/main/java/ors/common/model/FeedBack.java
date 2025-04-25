@@ -25,10 +25,10 @@ public class FeedBack {
     private Restaurant restaurant;
 
     @Column(nullable = false)
-    private String restaurantRating;
+    private double restaurantRating;
 
     @Column(nullable = false)
-    private String applicationRating;
+    private double appRating;
 
     @Column(nullable = false)
     private String comment;
@@ -69,20 +69,20 @@ public class FeedBack {
         this.restaurant = restaurant;
     }
 
-    public String getApplicationRating() {
-        return applicationRating;
-    }
-
-    public void setApplicationRating(String applicationRating) {
-        this.applicationRating = applicationRating;
-    }
-
-    public String getRestaurantRating() {
+    public double getRestaurantRating() {
         return restaurantRating;
     }
 
-    public void setRestaurantRating(String restaurantRating) {
+    public void setRestaurantRating(double restaurantRating) {
         this.restaurantRating = restaurantRating;
+    }
+
+    public double getAppRating() {
+        return appRating;
+    }
+
+    public void setAppRating(double appRating) {
+        this.appRating = appRating;
     }
 
     public String getComment() {

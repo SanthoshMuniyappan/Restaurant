@@ -4,20 +4,20 @@
                    http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.3.xsd">
 
     <changeSet id="9" author="Santhosh">
-        <createTable tableName="feedback">
+        <createTable tableName="feed_back">
             <column name="id" type="UUID" >
                 <constraints primaryKey="true" nullable="false"/>
             </column>
-            <column name="costumer_id" type="VARCHAR(20)">
+            <column name="customer_id" type="VARCHAR(100)">
                 <constraints nullable="false" foreignKeyName="fk_feedback_users" referencedTableName="customer" referencedColumnNames="id"/>
             </column>
-            <column name="restaurant_id" type="VARCHAR(20)">
+            <column name="restaurant_id" type="VARCHAR(100)">
                 <constraints nullable="false" foreignKeyName="fk_feedback_restaurant" referencedTableName="restaurant" referencedColumnNames="id"/>
             </column>
-            <column name="restaurant_rating" type="float">
+            <column name="restaurant_rating" type="double">
                 <constraints nullable="true"/>
             </column>
-            <column name="application_rating" type="float">
+            <column name="app_rating" type="double">
                 <constraints nullable="true"/>
             </column>
             <column name="comment" type="TEXT"/>

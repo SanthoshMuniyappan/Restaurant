@@ -3,7 +3,8 @@ package com.appservice.dto;
 public class RestaurantDTO {
 
     private String name;
-    private String ratings;
+    private double ratings;
+    private double appRating;
     private String startRate;
     private String location;
     private String createdBy;
@@ -17,12 +18,20 @@ public class RestaurantDTO {
         this.name = name;
     }
 
-    public String getRatings() {
+    public double getRatings() {
         return ratings;
     }
 
-    public void setRatings(String ratings) {
+    public void setRatings(double ratings) {
         this.ratings = ratings;
+    }
+
+    public double getAppRating() {
+        return appRating;
+    }
+
+    public void setAppRating(double appRating) {
+        this.appRating = appRating;
     }
 
     public String getStartRate() {

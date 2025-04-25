@@ -13,7 +13,10 @@
             <column name="name" type="varchar(50)">
                 <constraints nullable="false"/>
             </column>
-            <column name="ratings" type="varchar(100)">
+            <column name="ratings" type="double">
+                <constraints nullable="false"/>
+            </column>
+            <column name="app_rating" type="double">
                 <constraints nullable="false"/>
             </column>
             <column name="location" type="varchar(255)" >

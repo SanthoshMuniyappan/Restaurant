@@ -189,4 +189,22 @@ public class GlobalHandlerException {
         responseDTO.setData(exception.getMessage());
         return responseDTO;
     }
+
+    @ExceptionHandler(FeedBackNotFoundException.class)
+    @ResponseStatus(HttpStatus.BAD_REQUEST)
+    public ResponseDTO handleFeedBackNotFoundException(FeedBackNotFoundException exception) {
+
+        final Error error=new Error();
+        error.setErrorMessage(exception.getMessage());
+        error.setEndPoint(exception.getEndpoint());
+        error.setCreatedBy(exception.getCreatedBy());
+        this.errorRepository.save(error);
+
+        ResponseDTO responseDTO = new ResponseDTO();
+        exception.printStackTrace();
+        responseDTO.setStatus(HttpStatus.BAD_REQUEST.getReasonPhrase());
+        responseDTO.setMessage(Constants.NOT_FOUND);
+        responseDTO.setData(exception.getMessage());
+        return responseDTO;
+    }
 }

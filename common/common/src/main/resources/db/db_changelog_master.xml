@@ -23,5 +23,5 @@
     <include file="db/changelog/07020251855_created_veg_or_non_veg_entity.xml"/>
     <include file="db/changelog/041020251258_created_video_entity.xml"/>
     <include file="db/changelog/041120251116_created_error_table_entity.xml"/>
-
+    <include file="db/changelog/042520251102_created_restaurant_registration_entity.xml"/>
 </databaseChangeLog>

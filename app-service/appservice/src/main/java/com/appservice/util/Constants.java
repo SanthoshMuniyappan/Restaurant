@@ -37,4 +37,14 @@ public class Constants {
     public static final String ERROR_ID_NOT_FOUND="Error Id not found";
     public static final String DEFAULT_USER_ID ="NA";
     public static final String PAYMENT_ID_NOT_FOUND="Payment id not found";
+    public static final String FEEDBACK_ID_NOT_FOUND="Feedback id not found";
+    public static final String CUSTOMER_NOT_CAPABLE_OF_THIS_RESTAURANT="Customer not capable of this restaurant to given the feedback";
+    public static final String EMAIL_CODE_SEND="Email verification code send";
+    public static final String EMAIL_ALREADY_REGISTERED="Email already registered.";
+    public static final String TEMPORARY_PASSWORD_SEND="Temporary password sent to email.";
+    public static final String REGISTRATION_COMPLETE="Registration completed.";
+    public static final String RESTAURANT_LOGIN="Restaurant login successfully.";
+    public static final String PASSWORD_UPDATED="Password updated successfully.";
+    public static final String INVALID_VERIFICATION_CODE="Invalid verification code.";
+    public static final String TEMPORARY_PASSWORD_INVALID="Invalid temporary password.";
 }

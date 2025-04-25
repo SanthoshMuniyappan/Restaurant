@@ -35,12 +35,15 @@ public class OrdersService {
 
     private final AuthenticationService authenticationService;
 
-    public OrdersService(final EmployeeRepository employeeRepository, final OrdersRepository ordersRepository, final CustomerRepository customerRepository, final AuthenticationService authenticationService,final OrderItemRepository orderItemRepository) {
+    private final RealTimeNotificationService realTimeNotificationService;
+
+    public OrdersService(final EmployeeRepository employeeRepository, final OrdersRepository ordersRepository, final CustomerRepository customerRepository, final AuthenticationService authenticationService, final OrderItemRepository orderItemRepository,final RealTimeNotificationService realTimeNotificationService) {
         this.customerRepository = customerRepository;
         this.ordersRepository = ordersRepository;
         this.employeeRepository = employeeRepository;
         this.authenticationService = authenticationService;
-        this.orderItemRepository=orderItemRepository;
+        this.orderItemRepository = orderItemRepository;
+        this.realTimeNotificationService=realTimeNotificationService;
     }
 
     @Transactional
@@ -61,7 +64,13 @@ public class OrdersService {
     public ResponseDTO orderApprove(final String id) {
         final Orders orders = this.ordersRepository.findById(id).orElseThrow(() -> new OrderNotFoundException(Constants.ORDER_ID_NOT_FOUND, "api/v1/order/order-approve/{id}", authenticationService.getUserId()));
         orders.setStatus(OrderStatus.APPROVED);
+
+        String customerId = orders.getCustomer().getId();
+        String orderId = orders.getId();
+        realTimeNotificationService.notifyOrderApproval(customerId, orderId);
+
         return new ResponseDTO(Constants.UPDATED, this.ordersRepository.save(orders), HttpStatus.OK.getReasonPhrase());
+
     }
 
     @Transactional
@@ -82,11 +91,11 @@ public class OrdersService {
         return new ResponseDTO(Constants.RETRIEVED, this.ordersRepository.findAll(), HttpStatus.OK.getReasonPhrase());
     }
 
-    public ResponseDTO updateAndGetAmount(final String id){
+    public ResponseDTO updateAndGetAmount(final String id) {
         final Orders orders = this.ordersRepository.findById(id).orElseThrow(() -> new OrderNotFoundException(Constants.ORDER_ID_NOT_FOUND, "api/v1/order/retrieve/{id}", authenticationService.getUserId()));
-        List<OrderItems> orderItems=orderItemRepository.findAllByOrderId(id);
+        List<OrderItems> orderItems = orderItemRepository.findAllByOrderId(id);
         int amount = orderItems.stream().mapToInt(OrderItems::getTotalPrice).sum();
         orders.setAmount(amount);
-        return new ResponseDTO(Constants.RETRIEVED,amount,HttpStatus.OK.getReasonPhrase());
+        return new ResponseDTO(Constants.RETRIEVED, amount, HttpStatus.OK.getReasonPhrase());
     }
 }

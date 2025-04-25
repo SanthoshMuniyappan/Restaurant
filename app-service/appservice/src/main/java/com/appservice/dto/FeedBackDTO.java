@@ -3,10 +3,10 @@ package com.appservice.dto;
 public class FeedBackDTO {
 
     private String customerId;
-    private String orderId;
+    private String restaurantId;
     private String comment;
-    private String restaurantRating;
-    private String applicationRating;
+    private double restaurantRating;
+    private double appRating;
     private String createdBy;
     private String updatedBy;
 
@@ -18,12 +18,12 @@ public class FeedBackDTO {
         this.customerId = customerId;
     }
 
-    public String getOrderId() {
-        return orderId;
+    public String getRestaurantId() {
+        return restaurantId;
     }
 
-    public void setOrderId(String orderId) {
-        this.orderId = orderId;
+    public void setRestaurantId(String restaurantId) {
+        this.restaurantId = restaurantId;
     }
 
     public String getComment() {
@@ -34,19 +34,19 @@ public class FeedBackDTO {
         this.comment = comment;
     }
 
-    public String getApplicationRating() {
-        return applicationRating;
+    public double getAppRating() {
+        return appRating;
     }
 
-    public void setApplicationRating(String applicationRating) {
-        this.applicationRating = applicationRating;
+    public void setAppRating(double appRating) {
+        this.appRating = appRating;
     }
 
-    public String getRestaurantRating() {
+    public double getRestaurantRating() {
         return restaurantRating;
     }
 
-    public void setRestaurantRating(String restaurantRating) {
+    public void setRestaurantRating(double restaurantRating) {
         this.restaurantRating = restaurantRating;
     }
 

@@ -28,6 +28,7 @@ public class RestaurantService {
         final Restaurant restaurant = new Restaurant();
         restaurant.setName(restaurantDTO.getName());
         restaurant.setRatings(restaurantDTO.getRatings());
+        restaurant.setAppRating(restaurantDTO.getAppRating());
         restaurant.setLocation(restaurantDTO.getLocation());
         restaurant.setStartRate(restaurantDTO.getStartRate());
         restaurant.setCreatedBy(authenticationService.getUserId());
@@ -44,9 +45,6 @@ public class RestaurantService {
         }
         if (restaurantDTO.getLocation() != null) {
             restaurant.setLocation(restaurantDTO.getLocation());
-        }
-        if (restaurantDTO.getRatings() != null) {
-            restaurant.setRatings(restaurantDTO.getRatings());
         }
         if (restaurantDTO.getStartRate() != null) {
             restaurant.setStartRate(restaurantDTO.getStartRate());
