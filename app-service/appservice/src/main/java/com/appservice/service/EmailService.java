@@ -20,8 +20,6 @@ public class EmailService{
         helper.setTo(to);
         helper.setSubject(subject);
         helper.setText("<html><body>" + body + "</body></html>", true);
-
-
         javaMailSender.send(message);
     }
 }

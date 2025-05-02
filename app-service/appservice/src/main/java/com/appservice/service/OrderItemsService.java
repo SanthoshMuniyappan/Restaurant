@@ -9,18 +9,21 @@ import com.appservice.exception.ProductsNotFoundException;
 import com.appservice.repository.OrderItemRepository;
 import com.appservice.repository.OrdersRepository;
 import com.appservice.repository.ProductsRepository;
+import com.appservice.socket.SocketIOConnectionService;
 import com.appservice.util.AuthenticationService;
 import com.appservice.util.Constants;
 import jakarta.transaction.Transactional;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
+import ors.common.model.Customer;
 import ors.common.model.OrderItemStatus;
 import ors.common.model.OrderItems;
 import ors.common.model.OrderStatus;
 import ors.common.model.Orders;
 import ors.common.model.Products;
 
-import java.util.List;
+import java.util.HashMap;
+import java.util.Map;
 
 @Service
 public class OrderItemsService {
@@ -33,11 +36,15 @@ public class OrderItemsService {
 
     private final AuthenticationService authenticationService;
 
-    public OrderItemsService(final OrderItemRepository orderItemRepository, final OrdersRepository ordersRepository, final ProductsRepository productsRepository, final AuthenticationService authenticationService) {
+    private final SocketIOConnectionService socketIOConnectionService;
+    ;
+
+    public OrderItemsService(final OrderItemRepository orderItemRepository, final OrdersRepository ordersRepository, final ProductsRepository productsRepository, final AuthenticationService authenticationService, final SocketIOConnectionService socketIOConnectionService) {
         this.orderItemRepository = orderItemRepository;
         this.ordersRepository = ordersRepository;
         this.productsRepository = productsRepository;
         this.authenticationService = authenticationService;
+        this.socketIOConnectionService = socketIOConnectionService;
     }
 
     @Transactional
@@ -54,12 +61,18 @@ public class OrderItemsService {
         orderItems.setQuantity(orderItemsDTO.getQuantity());
         orderItems.setSharedWithTable(orderItemsDTO.getSharedWithTable());
         orderItems.setSpecialInstruction(orderItemsDTO.getSpecialInstruction());
-        orderItems.setStatus(status.getStatus());
+        orderItems.setStatus(status);
         orderItems.setProducts(products);
         final int totalPrice = orderItemsDTO.getQuantity() * products.getPrice();
         orderItems.setTotalPrice(totalPrice);
         orderItems.setCreatedBy(authenticationService.getUserId());
         orderItems.setUpdatedBy(authenticationService.getUserId());
+
+        Map<String, Object> data = new HashMap<>();
+        data.put("message", "New Order Placed");
+
+        socketIOConnectionService.broadcastToAllKOTs("ordered", data);
+
         return new ResponseDTO(Constants.CREATED, this.orderItemRepository.save(orderItems), HttpStatus.CREATED.getReasonPhrase());
     }
 
@@ -85,7 +98,7 @@ public class OrderItemsService {
     }
 
     public ResponseDTO retrieveAll() {
-        return new ResponseDTO(Constants.RETRIEVED,this.orderItemRepository.findAll() , HttpStatus.OK.getReasonPhrase());
+        return new ResponseDTO(Constants.RETRIEVED, this.orderItemRepository.findAll(), HttpStatus.OK.getReasonPhrase());
     }
 
     @Transactional
@@ -100,24 +113,48 @@ public class OrderItemsService {
     @Transactional
     public ResponseDTO UpdateKotReadyStatus(final String id) {
         final OrderItems orderItems = this.orderItemRepository.findById(id).orElseThrow(() -> new OrderItemsNotFoundException(Constants.ORDER_ITEMS_ID_NOT_FOUND, "api/v1/order-items/kot/ready-status/{id}", authenticationService.getUserId()));
+        final Orders orders=orderItems.getOrders();
         final OrderItemStatus status = OrderItemStatus.READY;
-        orderItems.setStatus(status.getStatus());
+        orderItems.setStatus(status);
+
+        Map<String, Object> data = new HashMap<>();
+        data.put("message", "Order Ready!");
+
+        final String customerId = orders.getCustomer().getId();
+        socketIOConnectionService.sendMessageToCustomer(customerId, "order_ready", data);
+
         return new ResponseDTO(Constants.UPDATED, this.orderItemRepository.save(orderItems), HttpStatus.OK.getReasonPhrase());
     }
 
     @Transactional
     public ResponseDTO UpdateServerDeliveredStatus(final String id, final OrderItemsDTO orderItemsDTO) {
         final OrderItems orderItems = this.orderItemRepository.findById(id).orElseThrow(() -> new OrderItemsNotFoundException(Constants.ORDER_ITEMS_ID_NOT_FOUND, "api/v1/order-items/server/delivered-status/{id}", authenticationService.getUserId()));
+        final Orders orders=orderItems.getOrders();
         final OrderItemStatus status = OrderItemStatus.DELIVERED;
-        orderItems.setStatus(status.getStatus());
+
+        Map<String, Object> data = new HashMap<>();
+        data.put("message", "Order Delivered!");
+
+        final String customerId = orders.getCustomer().getId();
+        socketIOConnectionService.sendMessageToCustomer(customerId, "order_delivered", data);
+
+        orderItems.setStatus(status);
         return new ResponseDTO(Constants.UPDATED, this.orderItemRepository.save(orderItems), HttpStatus.OK.getReasonPhrase());
     }
 
     @Transactional
     public ResponseDTO UpdateKotPreparingStatus(final String id) {
         final OrderItems orderItems = this.orderItemRepository.findById(id).orElseThrow(() -> new OrderItemsNotFoundException(Constants.ORDER_ITEMS_ID_NOT_FOUND, "api/v1/order-items/kot/prepare-status/{id}", authenticationService.getUserId()));
+        final Orders orders=orderItems.getOrders();
         final OrderItemStatus status = OrderItemStatus.PREPARING;
-        orderItems.setStatus(status.getStatus());
+        orderItems.setStatus(status);
+
+        Map<String, Object> data = new HashMap<>();
+        data.put("message", "Order Preparing!");
+
+        final String customerId = orders.getCustomer().getId();
+        socketIOConnectionService.sendMessageToCustomer(customerId, "order_preparing", data);
+
         return new ResponseDTO(Constants.UPDATED, this.orderItemRepository.save(orderItems), HttpStatus.OK.getReasonPhrase());
     }
 }

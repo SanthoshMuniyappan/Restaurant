@@ -26,11 +26,11 @@ public class Payment {
     @Column(nullable = false)
     private String amount;
 
-    @Enumerated(EnumType.STRING)
+    @Enumerated(EnumType.ORDINAL)
     @Column(nullable = false)
     private PaymentMethod paymentMethod;
 
-    @Enumerated(EnumType.STRING)
+    @Enumerated(EnumType.ORDINAL)
     @Column(nullable = false)
     private PaymentStatus status;
 

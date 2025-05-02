@@ -23,7 +23,7 @@ public class Orders {
     @Column(nullable = false)
     private String name;
 
-    @Enumerated(EnumType.STRING)
+    @Enumerated(EnumType.ORDINAL)
     @Column(nullable = false)
     private OrderStatus status;
 

@@ -47,7 +47,7 @@ public class SecurityConfig {
 //                        .requestMatchers("/order-items/server/**").hasAuthority("ROLE_SERVER")
 //                        .requestMatchers("/order-items/create").hasAuthority("ROLE_SERVER")
 //                        .requestMatchers("/order/place-order").hasAuthority("ROLE_SERVER")
-//                        .requestMatchers("/order/order-approve/{id}").hasAuthority("ROLE_ADMIN")
+                        .requestMatchers("/order/order-approve/{id}").hasAuthority("ROLE_ADMIN")
                         .anyRequest().permitAll())
                 .exceptionHandling(exceptionHandling -> exceptionHandling.authenticationEntryPoint(authenticationEntryPointImplement))
                 .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))

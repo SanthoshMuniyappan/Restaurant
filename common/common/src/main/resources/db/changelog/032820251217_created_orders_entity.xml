@@ -17,7 +17,7 @@
                 <constraints nullable="false"/>
             </column>
             <column name="amount" type="int"/>
-            <column name="status" type="varchar(100)" defaultValue="PENDING">
+            <column name="status" type="int" defaultValue="0">
                 <constraints nullable="false"/>
             </column>
             <column name="employee_id" type="varchar(100)">

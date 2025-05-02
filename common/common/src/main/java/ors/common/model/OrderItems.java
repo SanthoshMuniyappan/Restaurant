@@ -35,8 +35,9 @@ public class OrderItems {
     @Column(nullable = false)
     private String specialInstruction;
 
+    @Enumerated(EnumType.ORDINAL)
     @Column(nullable = false)
-    private String status;
+    private OrderItemStatus status;
 
     @Column(nullable = false)
     private String sharedWithTable;
@@ -66,6 +67,14 @@ public class OrderItems {
 
     public int getQuantity() {
         return quantity;
+    }
+
+    public OrderItemStatus getStatus() {
+        return status;
+    }
+
+    public void setStatus(OrderItemStatus status) {
+        this.status = status;
     }
 
     public void setQuantity(int quantity) {
@@ -110,14 +119,6 @@ public class OrderItems {
 
     public void setOrders(Orders orders) {
         this.orders = orders;
-    }
-
-    public String getStatus() {
-        return status;
-    }
-
-    public void setStatus(String status) {
-        this.status = status;
     }
 
     public int getTotalPrice() {
